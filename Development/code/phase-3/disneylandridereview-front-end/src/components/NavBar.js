@@ -4,15 +4,16 @@ import Nav from '../../node_modules/react-bootstrap/Nav';
 import Navbar from '../../node_modules/react-bootstrap/Navbar';
 import NavDropdown from '../../node_modules/react-bootstrap/NavDropdown';
 import Offcanvas from '../../node_modules/react-bootstrap/Offcanvas';
+import '../App.css';
 
 function NavBar() {
 
     return (
-        <>
+        <div >
         {['md'].map((expand) => (
-          <Navbar key={expand} bg="light" expand={expand} className="mb-3">
+          <Navbar key={expand} bg="light" expand={expand} className="NavBar">
             <Container fluid>
-              <Navbar.Brand href="/">Disney Ride Reviews</Navbar.Brand>
+              <Navbar.Brand font-family='WaltographRegular'href="/">Disney Ride Reviews</Navbar.Brand>
               <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
               <Navbar.Offcanvas
                 id={`offcanvasNavbar-expand-${expand}`}
@@ -27,7 +28,7 @@ function NavBar() {
                 <Offcanvas.Body>
                   <Nav className="justify-content-end flex-grow-1 pe-3">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/addride">Add Ride</Nav.Link>
+                    <Nav.Link href="/createride">Add Ride</Nav.Link>
                     <NavDropdown
                       title="See More"
                       id={`offcanvasNavbarDropdown-expand-${expand}`}
@@ -44,7 +45,7 @@ function NavBar() {
             </Container>
           </Navbar>
         ))}
-      </> 
+      </div> 
     )
 }
 

@@ -3,6 +3,9 @@ import NavBar from "./NavBar";
 import {Route, Routes} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import RidePage from "./RidePage";
+import CreateRide from "./CreateRide";
+
 function App() {
   const[rides, setRides] = useState([])
 
@@ -14,13 +17,15 @@ function App() {
 
   const handleNewRide = (newItem) => {
     console.log(newItem)
+    setRides([...rides, newItem])
   }
 
   return (
-    <div>
+    <div >
       <NavBar />
         <Routes>
-          <Route />
+          <Route exact path="/*" element={<RidePage rides={rides} setRides={setRides}/>}/>
+          <Route path="/createride" element={<CreateRide handleNewRide={handleNewRide}rides={rides} setRides={setRides}/>} />
         </Routes>
     </div>
   )

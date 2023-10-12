@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.Card {
+  font-family: 'WaltographRegular';
+  font-size: 30px;
+  font-weight: heavy;
+  font-style: normal;
+}
