@@ -14,7 +14,6 @@ function App() {
     fetch("http://localhost:9292/rides")
     .then((r) => r.json())
       .then((rides) => setRides(rides))
-      console.log(rides)
   }, [])
 
   const handleNewRide = (newItem) => {

@@ -7,7 +7,6 @@ import Col from 'react-bootstrap/Col';
 function RideList({
     rides,
     setRides,
-    reviews,
     searchTerm
 }) {
 
@@ -30,7 +29,7 @@ function RideList({
     return (
         <Container>
             <Row>
-            {rides.map((ride) => (
+            {filteredRides.map((ride) => (
             <Col sm key={ride.id}>
                     
                         <RideCard
@@ -39,6 +38,7 @@ function RideList({
                             name={ride.name}
                             park={ride.park}
                             reviews={ride.reviews}
+                            reviewId={ride.reviews.id}
                             handleDeleted={handleDeleted}
                             setRides={setRides}
                         />

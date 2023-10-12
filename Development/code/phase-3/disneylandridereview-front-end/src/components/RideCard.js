@@ -14,7 +14,8 @@ function RideCard({
     image,
     handleDeleted,
     writer,
-    reviews
+    reviews,
+    reviewId
 }) {
 
     const [rideReview, setRideReview] = useState([reviews])
@@ -58,10 +59,12 @@ function RideCard({
         <ListGroup className="list-group-flush">
                 <ListGroup.Item sm key={reviews.id}>
                 <ReviewList
+                            reviewId={reviewId}
                             writer={writer}
                             reviews={reviews}
                             rideId={id}
-                            rideReview={setRideReview}
+                            setRideReview={setRideReview}
+                            rideReview={rideReview}
                             handleDeletedReviews={handleDeletedReviews}
                                 />
                  </ListGroup.Item>

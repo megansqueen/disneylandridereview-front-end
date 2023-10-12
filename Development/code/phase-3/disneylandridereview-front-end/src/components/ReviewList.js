@@ -1,17 +1,25 @@
+import { useEffect } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 function ReviewCard({    
-    date,
-    writer,
-    review,
-    reviewId,
     handleDeletedReviews,
-    rideId
+    rideId,
+    setRideReview,
+    rideReview,
+    reviewId,
+    reviews
 }) {
 
+    useEffect(() => {
+        fetch(`http://localhost:9292/rides/${rideId}/reviews`)
+        .then((r) => r.json())
+          .then((reviews) => setRideReview(reviews))
+      }, [])
+
     function handleDeleteClick() {
+        console.log(rideId)
         fetch(`http://localhost:9292/rides/${rideId}/reviews/${reviewId}`, {
           method: "DELETE",
         })
@@ -21,12 +29,16 @@ function ReviewCard({
 
   return (
     <Card>
-      <ListGroup className="list-group-flush">
-        <ListGroup.Item>Date: {date}</ListGroup.Item>
-        <ListGroup.Item>Author: {writer}</ListGroup.Item>
-        <ListGroup.Item>Review: {review}</ListGroup.Item>
+        {reviews.map((review) => (
+            <ListGroup className="list-group-flush" key={review.id}>
+                  <ListGroup.Item>Date: {review.created_at}</ListGroup.Item>
+                  <ListGroup.Item>Author: {review.writer}</ListGroup.Item>
+                  <ListGroup.Item>Review: {review.body}</ListGroup.Item>
+            </ListGroup>
+            
+        ))}
         <Button onClick={handleDeleteClick}variant="light">Delete Review</Button>
-      </ListGroup>
+
       </Card>
   );
 }

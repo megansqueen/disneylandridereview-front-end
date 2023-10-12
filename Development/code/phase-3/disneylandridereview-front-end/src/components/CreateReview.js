@@ -3,9 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 function CreateReview({ 
-    setWriter,
-    setReviews,
-    reviews
+    setRideReview,
+    rideReview
 }) 
 
 {
@@ -19,7 +18,7 @@ function CreateReview({
 
     function handleNewReview(newItem) {
         console.log(newItem)
-        setReviews([...reviews, newItem])
+        setRideReview([...rideReview, newItem])
     }
 
     function handleSubmit(e) {
