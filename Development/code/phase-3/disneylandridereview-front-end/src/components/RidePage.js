@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import RideList from "./RideList";
 import Search from "./Search";
 
-function RidePage({ rides, setRides }) {
+function RidePage({ 
+    rides, 
+    setRides
+}) {
     const [searchTerm, setSearchTerm] = useState("")
     const [word, setWord] = useState("")
     const [numb, setNumb] = useState(0)
 
     function handleSearch(search) {
+        console.log(rides)
         setSearchTerm(search)
         }
     

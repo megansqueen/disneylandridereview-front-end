@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 function RideList({
     rides,
     setRides,
+    reviews,
     searchTerm
 }) {
 
@@ -15,6 +16,7 @@ function RideList({
     })
 
     function handleDeleted(deletedRide) {
+        console.log(rides)
         const remainingRides = filteredRides.filter((ride) => {
             if (ride.id !== deletedRide) {
                 return ride
@@ -28,7 +30,7 @@ function RideList({
     return (
         <Container>
             <Row>
-            {filteredRides.map((ride) => (
+            {rides.map((ride) => (
             <Col sm key={ride.id}>
                     
                         <RideCard
@@ -38,6 +40,7 @@ function RideList({
                             park={ride.park}
                             reviews={ride.reviews}
                             handleDeleted={handleDeleted}
+                            setRides={setRides}
                         />
             </Col>
             ))}
