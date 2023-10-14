@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import CreateReview from './CreateReview';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
@@ -25,10 +25,11 @@ function RideCard({
           .then(() => handleDeleted(id))
       }
 
-      function handleDeletedReview(deletedReview) {
+
+      function handleUpdatedReview(updatedReview) {
         const updatedRides = rides.map((ride) => {
-          if(ride.reviews.includes(deletedReview)) {
-            const updatedReviews = ride.reviews.filter((review) => review.id !== deletedReview.id);
+          if(ride.reviews.includes(updatedReview)) {
+            const updatedReviews = ride.reviews.filter((review) => review.id !== updatedReview.id);
             return {
               ...ride,
               reviews:
@@ -55,6 +56,8 @@ function RideCard({
             <CreateReview 
                 rides={rides}
                 setRides={setRides}
+                handleUpdatedReview={handleUpdatedReview}
+                id={id}
                 />
         </Card.Body>
         <ListGroup className="list-group-flush">
@@ -62,7 +65,7 @@ function RideCard({
                  <ListGroup.Item sm key={review.id}>
                         <ReviewCard
                             review={review}
-                            handleDeletedReview={handleDeletedReview}                      />
+                            handleUpdatedReview={handleUpdatedReview}                   />
                         </ListGroup.Item>
                 )}
         </ListGroup>

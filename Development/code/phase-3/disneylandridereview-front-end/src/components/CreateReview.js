@@ -3,9 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 function CreateReview({ 
-    setReviews,
-    reviews,
-    rideId
+    rides,
+    id,
+    setRides
 }) 
 
 {
@@ -18,18 +18,29 @@ function CreateReview({
     }
 
     function handleNewReview(newItem) {
-        console.log(newItem)
-        setReviews([...reviews, newItem])
+        const updatedRides = rides.map((ride) => {
+          if(ride.id === newItem.rideId) {
+            const updatedReviews = ride.reviews.filter((review) => review.id !== newItem.id);
+            return {
+              ...ride,
+              reviews:
+              updatedReviews
+            }
+          }
+          return ride;
+        })
+        setRides(updatedRides)
     }
 
     function handleSubmit(e) {
-        e.preventDefault();
+        // e.preventDefault();
         const itemData = {
             writer: author,
             body: body,
-            ride_id: rideId
+            ride_id: id
         }
-        fetch(`http://localhost:9292/rides/${rideId}/reviews`, {
+        console.log(itemData)
+        fetch(`http://localhost:9292/rides/${id}/reviews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

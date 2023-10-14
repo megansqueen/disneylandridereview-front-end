@@ -9,16 +9,11 @@ import CreateRide from "./CreateRide";
 function App() {
   const[rides, setRides] = useState([])
 
-
   useEffect(() => {
     fetch("http://localhost:9292/rides")
     .then((r) => r.json())
-      .then((rides) => setRides(rides))
+      .then((rideData) => setRides(rideData))
   }, [])
-
-  const rideId = rides.map((ride) => {
-    return ride.id
-  }) 
 
   const handleNewRide = (newItem) => {
     console.log(newItem)

@@ -15,7 +15,7 @@ function CreateRide({ handleNewRide }) {
     }
 
     function handleSubmit(e) {
-        e.preventDefault();
+        // e.preventDefault();
         const itemData = {
             image: image,
             name: name,
