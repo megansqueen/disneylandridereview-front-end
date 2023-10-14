@@ -3,8 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 function CreateReview({ 
-    setRideReview,
-    rideReview
+    setReviews,
+    reviews,
+    rideId
 }) 
 
 {
@@ -18,16 +19,17 @@ function CreateReview({
 
     function handleNewReview(newItem) {
         console.log(newItem)
-        setRideReview([...rideReview, newItem])
+        setReviews([...reviews, newItem])
     }
 
     function handleSubmit(e) {
         e.preventDefault();
         const itemData = {
             writer: author,
-            body: body
+            body: body,
+            ride_id: rideId
         }
-        fetch("http://localhost:9292/rides/:id/reviews", {
+        fetch(`http://localhost:9292/rides/${rideId}/reviews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

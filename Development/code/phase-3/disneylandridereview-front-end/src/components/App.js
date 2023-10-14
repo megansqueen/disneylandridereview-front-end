@@ -16,6 +16,10 @@ function App() {
       .then((rides) => setRides(rides))
   }, [])
 
+  const rideId = rides.map((ride) => {
+    return ride.id
+  }) 
+
   const handleNewRide = (newItem) => {
     console.log(newItem)
     setRides([...rides, newItem])
@@ -25,7 +29,7 @@ function App() {
     <div >
       <NavBar />
         <Routes>
-          <Route exact path="/*" element={<RidePage rides={rides} setRides={setRides}/>}/>
+          <Route exact path="/*" element={<RidePage rides={rides} setRides={setRides} />}/>
           <Route path="/createride" element={<CreateRide handleNewRide={handleNewRide}rides={rides} setRides={setRides}/>} />
         </Routes>
     </div>

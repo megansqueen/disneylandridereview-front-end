@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import CreateReview from './CreateReview';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import ReviewList from './ReviewList';
+import ReviewCard from './ReviewCard';
 // import Form from 'react-bootstrap/Form';
 
 function RideCard({    
@@ -13,12 +12,10 @@ function RideCard({
     park,
     image,
     handleDeleted,
-    writer,
-    reviews,
-    reviewId
+    rides,
+    setRides,
+    reviews
 }) {
-
-    const [rideReview, setRideReview] = useState([reviews])
     
     function handleDeleteClick() {
         fetch(`http://localhost:9292/rides/${id}`, {
@@ -28,15 +25,19 @@ function RideCard({
           .then(() => handleDeleted(id))
       }
 
-      function handleDeletedReviews(deletedReview) {
-        const remainingReviews = rideReview.filter((review) => {
-            if (review.id !== deletedReview) {
-                return review
-            } else {
-                return null
+      function handleDeletedReview(deletedReview) {
+        const updatedRides = rides.map((ride) => {
+          if(ride.reviews.includes(deletedReview)) {
+            const updatedReviews = ride.reviews.filter((review) => review.id !== deletedReview.id);
+            return {
+              ...ride,
+              reviews:
+              updatedReviews
             }
+          }
+          return ride;
         })
-        setRideReview(remainingReviews)
+        setRides(updatedRides)
     }
     
 
@@ -52,22 +53,18 @@ function RideCard({
       </ListGroup>
       <Card.Body>
             <CreateReview 
-                setRideReview={setRideReview}
-                rideReview={rideReview}
+                rides={rides}
+                setRides={setRides}
                 />
         </Card.Body>
         <ListGroup className="list-group-flush">
-                <ListGroup.Item sm key={reviews.id}>
-                <ReviewList
-                            reviewId={reviewId}
-                            writer={writer}
-                            reviews={reviews}
-                            rideId={id}
-                            setRideReview={setRideReview}
-                            rideReview={rideReview}
-                            handleDeletedReviews={handleDeletedReviews}
-                                />
-                 </ListGroup.Item>
+            {reviews.map((review) =>
+                 <ListGroup.Item sm key={review.id}>
+                        <ReviewCard
+                            review={review}
+                            handleDeletedReview={handleDeletedReview}                      />
+                        </ListGroup.Item>
+                )}
         </ListGroup>
       <Card.Body>
         <Button onClick={handleDeleteClick}variant="dark">Delete Ride</Button>

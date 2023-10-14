@@ -38,9 +38,9 @@ function RideList({
                             name={ride.name}
                             park={ride.park}
                             reviews={ride.reviews}
-                            reviewId={ride.reviews.id}
                             handleDeleted={handleDeleted}
                             setRides={setRides}
+                            rides={rides}
                         />
             </Col>
             ))}
