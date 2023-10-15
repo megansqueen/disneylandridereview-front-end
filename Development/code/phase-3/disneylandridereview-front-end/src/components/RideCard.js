@@ -6,40 +6,45 @@ import Button from 'react-bootstrap/Button';
 import ReviewCard from './ReviewCard';
 // import Form from 'react-bootstrap/Form';
 
-function RideCard({    
-    name,
-    id,
-    park,
-    image,
+function RideCard({ 
+    ride,   
     handleDeleted,
     rides,
     setRides,
-    reviews
+    reviewState,
+    setReviewState
 }) {
     
+    const {id, image, name, park, reviews} = ride
+
+    useEffect(() => {
+      rides.map((ride) => {
+        const id = ride.id
+      })
+      fetch(`http://localhost:9292/rides/${id}/reviews`)
+      .then((r) => r.json())
+        .then((reviewData) => setReviewState(reviewData))
+    }, [])
+
     function handleDeleteClick() {
         fetch(`http://localhost:9292/rides/${id}`, {
           method: "DELETE",
         })
           .then((r) => r.json())
           .then(() => handleDeleted(id))
-      }
-
-
-      function handleUpdatedReview(updatedReview) {
-        const updatedRides = rides.map((ride) => {
-          if(ride.reviews.includes(updatedReview)) {
-            const updatedReviews = ride.reviews.filter((review) => review.id !== updatedReview.id);
-            return {
-              ...ride,
-              reviews:
-              updatedReviews
-            }
-          }
-          return ride;
-        })
-        setRides(updatedRides)
     }
+
+    function handleDeletedReview(deletedReview) {
+      console.log(reviewState)
+      const remainingReviews = reviewState.filter((review) => {
+          if (review.id !== deletedReview.id) {
+              return review
+          } else {
+              return null
+          }
+      })
+      setReviewState(remainingReviews)
+  }
     
 
   return (
@@ -56,17 +61,22 @@ function RideCard({
             <CreateReview 
                 rides={rides}
                 setRides={setRides}
-                handleUpdatedReview={handleUpdatedReview}
                 id={id}
+                reviewState={reviewState}
+                setReviewState={setReviewState}
                 />
         </Card.Body>
         <ListGroup className="list-group-flush">
-            {reviews.map((review) =>
+            {reviewState.map((review) =>
                  <ListGroup.Item sm key={review.id}>
                         <ReviewCard
                             review={review}
-                            handleUpdatedReview={handleUpdatedReview}                   />
+                            handleDeletedReview={handleDeletedReview}   
+                            reviewState={reviewState}
+                            setReviewState={setReviewState}           
+                            />
                         </ListGroup.Item>
+                        
                 )}
         </ListGroup>
       <Card.Body>

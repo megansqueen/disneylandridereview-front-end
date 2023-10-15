@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 function ReviewCard({    
-    handleUpdatedReview,
+    handleDeletedReview,
     review
 }) {
 
@@ -13,11 +13,12 @@ function ReviewCard({
     function handleDeleteClick() {
         console.log(id)
         console.log(review)
+        console.log(review.date)
         fetch(`http://localhost:9292/rides/${ride_id}/reviews/${id}`, {
           method: "DELETE",
         })
           .then((r) => r.json())
-          .then((deletedReview) => handleUpdatedReview(deletedReview))
+          .then((deletedReview) => handleDeletedReview(deletedReview))
       }
 
   return (

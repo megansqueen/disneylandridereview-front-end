@@ -4,7 +4,9 @@ import Search from "./Search";
 
 function RidePage({ 
     rides, 
-    setRides
+    setRides,
+    reviewState,
+    setReviewState
 }) {
     const [searchTerm, setSearchTerm] = useState("")
     const [word, setWord] = useState("")
@@ -32,6 +34,8 @@ function RidePage({
                 rides={rides}
                 setRides={setRides}
                 searchTerm={searchTerm}
+                reviewState={reviewState}
+                setReviewState={setReviewState}
             />
     </main>
   );

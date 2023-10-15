@@ -5,7 +5,9 @@ import Form from 'react-bootstrap/Form';
 function CreateReview({ 
     rides,
     id,
-    setRides
+    setRides,
+    reviewState,
+    setReviewState
 }) 
 
 {
@@ -21,6 +23,7 @@ function CreateReview({
         const updatedRides = rides.map((ride) => {
           if(ride.id === newItem.rideId) {
             const updatedReviews = ride.reviews.filter((review) => review.id !== newItem.id);
+            setReviewState(...reviewState, newItem)
             return {
               ...ride,
               reviews:
