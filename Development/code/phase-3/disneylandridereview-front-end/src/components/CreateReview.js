@@ -3,11 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 function CreateReview({ 
-    rides,
     id,
+    handleNewReview,
     setRides,
-    reviewState,
-    setReviewState
+    rides,
+    stateReviews,
+    setStateReviews
 }) 
 
 {
@@ -19,21 +20,28 @@ function CreateReview({
         setAuthor("")
     }
 
-    function handleNewReview(newItem) {
-        const updatedRides = rides.map((ride) => {
-          if(ride.id === newItem.rideId) {
-            const updatedReviews = ride.reviews.filter((review) => review.id !== newItem.id);
-            setReviewState(...reviewState, newItem)
-            return {
-              ...ride,
-              reviews:
-              updatedReviews
-            }
-          }
-          return ride;
-        })
-        setRides(updatedRides)
-    }
+    // function handleNewReview(newItem) {
+    //     const updatedRides = rides.map((ride) => {
+    //       if(ride.id === newItem.rideId) {
+    //         const updatedReviews = ride.reviews.push(newItem);
+    //         return {
+    //           ...ride,
+    //           reviews:
+    //           updatedReviews
+    //         }
+    //       }
+    //       return ride;
+    //     })
+    //     setRides(updatedRides)
+    // }
+
+
+
+    // function handleNewReview(newReview){
+    //     console.log(newReview)
+    //     const updatedReviews = stateReviews.push([newReview])
+    //     console.log([updatedReviews])
+    //   }
 
     function handleSubmit(e) {
         // e.preventDefault();

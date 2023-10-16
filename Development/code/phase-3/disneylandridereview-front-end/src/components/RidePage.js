@@ -4,24 +4,14 @@ import Search from "./Search";
 
 function RidePage({ 
     rides, 
-    setRides,
-    reviewState,
-    setReviewState
+    setRides
 }) {
     const [searchTerm, setSearchTerm] = useState("")
-    const [word, setWord] = useState("")
-    const [numb, setNumb] = useState(0)
 
     function handleSearch(search) {
         console.log(rides)
         setSearchTerm(search)
         }
-    
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setNumb((numb) => numb + word.length)
-        setWord("")
-    }
 
 //controlled form with input field and a clickme button//
 //paragraph with a 0//
@@ -34,8 +24,6 @@ function RidePage({
                 rides={rides}
                 setRides={setRides}
                 searchTerm={searchTerm}
-                reviewState={reviewState}
-                setReviewState={setReviewState}
             />
     </main>
   );

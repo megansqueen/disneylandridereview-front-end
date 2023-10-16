@@ -8,13 +8,13 @@ function ReviewCard({
     review
 }) {
 
-    const {body, id, ride_id, writer, date} = review
+    const {id, body, writer, ride_id, created_at} = review
     
     function handleDeleteClick() {
-        console.log(id)
         console.log(review)
-        console.log(review.date)
-        fetch(`http://localhost:9292/rides/${ride_id}/reviews/${id}`, {
+        console.log(review.body)
+
+        fetch(`http://localhost:9292/reviews/${id}`, {
           method: "DELETE",
         })
           .then((r) => r.json())
@@ -24,7 +24,7 @@ function ReviewCard({
   return (
     <Card>
             <ListGroup className="list-group-flush" key={id}>
-                  <ListGroup.Item>Date: {date}</ListGroup.Item>
+                  <ListGroup.Item>Date: {created_at}</ListGroup.Item>
                   <ListGroup.Item>Author: {writer}</ListGroup.Item>
                   <ListGroup.Item>Review: {body}</ListGroup.Item>
             </ListGroup>
