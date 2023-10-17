@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import RideCard from "./RideCard.js";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -44,7 +44,7 @@ function RideList({
     return (
         <Container>
             <Row>
-            {rides.map((ride) => (
+            {filteredRides.map((ride) => (
             <Col sm key={ride.id}>
                     
                         <RideCard

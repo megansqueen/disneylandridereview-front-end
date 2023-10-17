@@ -15,22 +15,11 @@ function App() {
       .then((rideData) => updateRideData(rideData))
   }, [])
 
-  // useEffect(() => {
-  //   fetch("http://localhost:9292/reviews")
-  //   .then((r) => r.json())
-  //     .then((reviewData) => updateReviewData(reviewData))
-  // }, [])
-
-  // function updateReviewData(data) {
-  //   setReviewState(data)
-  // }
-
   function updateRideData(data) {
     setRides(data)
   }
 
   const handleNewRide = (newItem) => {
-    console.log(newItem)
     setRides([...rides, newItem])
   }
 

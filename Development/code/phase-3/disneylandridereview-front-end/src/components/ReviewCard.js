@@ -11,8 +11,6 @@ function ReviewCard({
     const {id, body, writer, ride_id, created_at} = review
     
     function handleDeleteClick() {
-        console.log(review)
-        console.log(review.body)
 
         fetch(`http://localhost:9292/reviews/${id}`, {
           method: "DELETE",

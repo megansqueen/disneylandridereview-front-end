@@ -13,7 +13,7 @@ function NavBar() {
         {['md'].map((expand) => (
           <Navbar key={expand} bg="light" expand={expand} className="NavBar">
             <Container fluid>
-              <Navbar.Brand font-family='WaltographRegular'href="/">Disney Ride Reviews</Navbar.Brand>
+              <Navbar.Brand fontFamily='WaltographRegular'href="/">Disney Ride Reviews</Navbar.Brand>
               <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
               <Navbar.Offcanvas
                 id={`offcanvasNavbar-expand-${expand}`}

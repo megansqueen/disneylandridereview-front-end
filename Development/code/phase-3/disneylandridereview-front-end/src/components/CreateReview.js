@@ -4,11 +4,7 @@ import Form from 'react-bootstrap/Form';
 
 function CreateReview({ 
     id,
-    handleNewReview,
-    setRides,
-    rides,
-    stateReviews,
-    setStateReviews
+    handleNewReview
 }) 
 
 {
@@ -20,37 +16,12 @@ function CreateReview({
         setAuthor("")
     }
 
-    // function handleNewReview(newItem) {
-    //     const updatedRides = rides.map((ride) => {
-    //       if(ride.id === newItem.rideId) {
-    //         const updatedReviews = ride.reviews.push(newItem);
-    //         return {
-    //           ...ride,
-    //           reviews:
-    //           updatedReviews
-    //         }
-    //       }
-    //       return ride;
-    //     })
-    //     setRides(updatedRides)
-    // }
-
-
-
-    // function handleNewReview(newReview){
-    //     console.log(newReview)
-    //     const updatedReviews = stateReviews.push([newReview])
-    //     console.log([updatedReviews])
-    //   }
-
     function handleSubmit(e) {
-        // e.preventDefault();
+        e.preventDefault();
         const itemData = {
             writer: author,
-            body: body,
-            ride_id: id
+            body: body
         }
-        console.log(itemData)
         fetch(`http://localhost:9292/rides/${id}/reviews`, {
             method: "POST",
             headers: {

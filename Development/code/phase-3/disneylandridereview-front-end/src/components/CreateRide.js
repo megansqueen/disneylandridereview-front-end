@@ -3,7 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 
-function CreateRide({ handleNewRide }) {
+function CreateRide({ 
+    handleNewRide
+}) {
+
     const [name, setName] = useState([])
     const [image, setImage] = useState([])
     const [park, setPark] = useState([])
